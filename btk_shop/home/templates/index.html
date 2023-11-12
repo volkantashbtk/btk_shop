@@ -1,2 +1,9 @@
 {%  extends 'homebase.html' %}
 {% load static %}
+{% block title %} {{title}} {% endblock %}
+{% block description %}index description{% endblock description %}
+{% block keywords %}index keywords{% endblock keywords %}
+
+{% block sidebar %}{% include "sidebar.html" %}{% endblock sidebar %}
+{% block body %}{% include "content.html" %}{% endblock body %}
+{% block foot %}{% endblock foot %}
