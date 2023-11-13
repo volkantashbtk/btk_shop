@@ -1,5 +1,6 @@
 {% load static %}
-
+{% firstof '<p style="color:red">Hakkımızda</p>' as a %}
+{{a}}
     <!-- Navbar Start -->
     <div class="container-fluid mb-5">
         <div class="row border-top px-xl-5">
@@ -50,7 +51,8 @@
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="iletishim" class="nav-item nav-link">İletişim</a>
+                            <a href="hakkimizda" class="nav-item nav-link">Hakkımızda</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <a href="" class="nav-item nav-link">Login</a>
@@ -61,7 +63,7 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="../static/img/carousel-1.jpg" alt="Image">
+                            <img class="img-fluid" src="{%static 'img/carousel-1.jpg'%}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
@@ -71,7 +73,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="../static/img/carousel-2.jpg" alt="Image">
+                            <img class="img-fluid" src="{%static 'img/carousel-2.jpg'%}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>

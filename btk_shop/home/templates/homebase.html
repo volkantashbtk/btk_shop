@@ -1,16 +1,14 @@
 {%  load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %} BTK Shop {% endblock title %}</title>
+    <title>{% block title %} BTK Shop {% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="{% block keywords %}keywords{% endblock keywords %}" name="keywords">
-    <meta content="{% block description %}description{% endblock description %}" name="description">
+    <meta content="{% block keywords %} BTK Shop keywords {% endblock %}" name="keywords">
+    <meta content="{% block description %} BTK Shop description{% endblock %}" name="description">
 
-    <!-- Favicon -->
-    <link href="{% static 'img/favicon.ico'%}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -21,23 +19,17 @@
 
     <!-- Libraries Stylesheet -->
     <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css'%}" rel="stylesheet">
-    {% block head %}{% endblock head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url }}" >
+{% block head %}   {% endblock %}
 </head>
-
 <body>
-
 {% include 'header.html' %}
-{% block sidebar %}{% endblock sidebar %}
-{% block slider %}{% endblock slider %}
-{% block body %}{% endblock body %}
-{%  include 'footer.html' %}
-{% block foot %}{% endblock foot %}
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+{% block sidebar %} {% endblock %}
+{% block slider %} {% endblock %}
+{% block body %} {% endblock %}
+{% include 'footer.html' %}
+{% block foot %} {% endblock %}
 </body>
-
 </html>

@@ -23,6 +23,7 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('admin/', admin.site.urls),
     path('product/', include('product.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls'))
 ]
 
 # resimlerin veya static dosyaların admin tarafında gösterilmesi için
