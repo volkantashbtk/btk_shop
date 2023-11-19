@@ -1,6 +1,9 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.forms import TextInput, Textarea, ModelForm
+from django.contrib.auth.models import User
+from django.http import request
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 class Setting(models.Model):
@@ -51,6 +54,7 @@ class ContactFormMessage(models.Model):
     
     def __str__(self) -> str:
         return self.name
+   
     
 # class ContactForm(ModelForm):
 #     class Meta:
@@ -103,3 +107,26 @@ class ContactForm(ModelForm):
                     'required'      : "required",
                     'data-validation-required-message': "Please enter your message"}),
         }
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(blank=True, max_length=20)
+    address = models.CharField(blank=True, max_length=150)
+    city = models.CharField(blank=True, max_length=20)
+    country = models.CharField(blank=True, max_length=50)
+    image = models.ImageField(blank=True, upload_to='images/users/')
+    def __str__(self):
+        return self.user.username
+
+    def user_name(self):
+        return self.user.first_name + ' ' + self.user.last_name + ' [' + self.user.username + '] '
+
+    def image_tag(self):
+        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+    image_tag.short_description = 'Image'
+
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['phone', 'address', 'city', 'country', 'image']

@@ -14,16 +14,29 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# adminde resim dosyalarının görüntülenmesi için
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls.static import static
+
+import home
 from btk_shop import settings
+
 urlpatterns = [
-    path('', include('home.urls')),
-    path('home/', include('home.urls')),
     path('admin/', admin.site.urls),
+    path('', include('home.urls')), # herhangi bir url belirtmeden home url gitmesi için
+    path('home/', include('home.urls')),
     path('product/', include('product.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls'))
+    path('user/', include('user.urls')),
+    path('order/', include('order.urls')),
+
+    # blog sayfaları
+    path("hakkimizda", home.views.hakkimizda, name="hakkimizda"),
+    path("referanslar", home.views.referanslar, name="referanslar"),
+    path("iletisim", home.views.iletishim, name="iletishim"),
+
+#     ckeditor için
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 # resimlerin veya static dosyaların admin tarafında gösterilmesi için
