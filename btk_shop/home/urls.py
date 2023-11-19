@@ -5,7 +5,11 @@ urlpatterns = [
 
     path("", views.index, name="index"),
     path("hakkimizda", views.hakkimizda, name="hakkimizda"),
+    path("referanslar", views.hakkimizda, name="referanslar"),
     path("iletishim", views.iletishim, name="iletishim"),
+    path("category/<int:id>/<slug:slug>", views.categoryProducts, name="categoryProducts"),
+    path("product_detail/<int:id>/<slug:slug>", views.productDetail, name="productDetail"),
+
     # ex: /polls/5/
     # path("<int:question_id>/", views.detail, name="detail"),
     # ex: /polls/5/results/

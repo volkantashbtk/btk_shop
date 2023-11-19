@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.forms import TextInput, Textarea, ModelForm
 
 # Create your models here.
 class Setting(models.Model):
@@ -31,3 +32,74 @@ class Setting(models.Model):
     def __str__(self):
         return self.title
     
+class ContactFormMessage(models.Model):
+    STATUS = (
+        ('New', 'New'),
+        ('Read', 'Read'),
+        ('Closed', 'Closed'),
+    )
+    
+    name = models.CharField(blank=True, max_length=20)
+    email = models.CharField(blank=True, max_length=50)
+    subject = models.CharField(blank=True, max_length=50)
+    message = models.TextField(blank=True, max_length=255)
+    status = models.CharField(blank=True, max_length=10, default='New')
+    ip = models.CharField(blank=True, max_length=20)
+    note = models.CharField(blank=True, max_length=20)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self) -> str:
+        return self.name
+    
+# class ContactForm(ModelForm):
+#     class Meta:
+#         model = ContactFormMessage
+#         fields = ['name', 'email', 'subject', 'message']
+#         widgets = {
+#             'name'    : TextInput(attrs={'class': 'input', 'placeholde': 'Name & Surname'}),
+#             'subject' : TextInput(attrs={'class': 'input', 'placeholde': 'Subject'}),
+#             'email'   : TextInput(attrs={'class': 'input', 'placeholde': 'Email Address'}),
+#             'message' : Textarea(attrs={'class': 'input', 'placeholde': 'Your Message', 'row':'5'}),
+#         }
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = ContactFormMessage
+        fields = ['name', 'email', 'subject', 'message']
+        widgets = {
+            'name': TextInput(
+                attrs={
+                    'type'          : "text",
+                    'class'         : "form-control", 
+                    'id'            : "name", 
+                    'placeholder'   : "Your Name", 
+                    'required'      : "required",
+                    'data-validation-required-message' : "Please enter your name"
+                    }),
+            'email': TextInput(
+                attrs={
+                    'type'          : 'email',
+                    'class'         : "form-control",
+                    'id'            : "email",
+                    'placeholder'   : "Your Email",
+                    'required'      : "required",
+                    'data-validation-required-message': "Please enter your email"
+                    }),
+            'subject': TextInput(
+                attrs={
+                    'type'          : "text", 
+                    'class'         : "form-control", 
+                    'id'            : "subject", 
+                    'placeholder'   : "Subject",                       
+                    'required'      : "required", 
+                    'data-validation-required-message': "Please enter a subject"}),
+            'message': Textarea(
+                attrs={
+                    'class'         : "form-control", 
+                    'rows'          : "6", 
+                    'id'            : "message", 
+                    'placeholder'   : "Message",
+                    'required'      : "required",
+                    'data-validation-required-message': "Please enter your message"}),
+        }

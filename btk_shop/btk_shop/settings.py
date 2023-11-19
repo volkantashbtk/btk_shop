@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 #     eklenen eklentiler
     'ckeditor',
     'ckeditor_uploader',
+    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'home.context_processor.setting',
+                'home.context_processor.category',
             ],
         },
     },
